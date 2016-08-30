@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.12.4.min.js"></script>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border: 5px solid #cccccc;
+            border-radius: 50%;
+            position: relative;
+            background-color: white;
+            clip: rect(0,100px,200px,0);
+            z-index: 22;
+        }
+        .pox{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: absolute;
+            background-color: #eeeeee;
+            clip: rect(0,100px,200px,0);
+            z-index: 15;
+            transition: all 1s;
+            transition-timing-function:linear;
+        }
+        .pie2{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: absolute;
+            background-color: #eeeeee;
+            clip: rect(0,100px,200px,0);
+            z-index: 20;
+            transform: rotate(180deg);
+            display: none;
+        }
+        .pie1{
+            display: block;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: absolute;
+            background-color: white;
+            clip: rect(0,100px,200px,0);
+            z-index: 20;
+        }
+        .time{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            left: calc(50% - 15px);
+            top: calc(50% - 15px);
+            font-size: 30px;
+            position: absolute;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"><div class="pie2"></div><div class="pie1"></div><div class="pox"></div><span class="time">10</span></div>
+</body>
+<script>
+    var i = 0;
+    function func(){
+        if(i<10){
+            setTimeout(function(){
+                i++;
+                $('.pox').css('transform','rotate('+ 36*i+ 'deg)');
+                $('.time').text(11-i);
+                func()
+            },1000);
+            if(i>5){
+                $('.pie2').css('display','block');
+                $('.pie1').css('display','none');
+            }
+        }
+        if(i ==10){
+            setTimeout(function(){
+                $('.time').text(0);
+                alert('完成')
+            },1000)
+        }
+    }
+    func()
+</script>
+</html>
